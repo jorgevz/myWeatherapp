@@ -31,9 +31,9 @@ return(
 <div>
 <h3>Hello there</h3>
 <input type='search'/>
+<button>search</button>
 {this.state.weather.map(weather => (
   
-
   <div>
   
   <h2>{weather.current.temp_f}</h2>
