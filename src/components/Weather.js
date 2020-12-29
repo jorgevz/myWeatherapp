@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 
 export default class Weather extends React.Component {
@@ -7,46 +8,56 @@ export default class Weather extends React.Component {
         super(props)
         this.state = {
           weather: [],
-
-        }
+        
+       }
     }
 
 
 
 async componentDidMount(){
-
-const url = "http://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=nyc";
-const res = await fetch(url);
-const data = await res.json();
-// placed ([{}]) instead of ({}) because is an array of objects
-this.setState ([{ weather: data }]);
-console.log(this.state)
-    }
   
+axios.get(`http://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=nyc`).then
+( res => {
+   
+   this.setState ({weather: [res.data] })
+    
+    console.log(this.state.weather)
+
+        
+});
+}
+
+  
+
+  
+  
+ 
 
 render (){
+
 return(
-
-
 <div>
-<h3>Hello there</h3>
-<input type='search'/>
-<button>search</button>
-{this.state.weather.map(weather => (
   
-  <div>
-  
-  <h2>{weather.current.temp_f}</h2>
-  <h4>{weather.location.name}</h4> 
-  <h3>{weather.location.country}</h3>
-  <input type='search' id='input'></input>
+<h2>{this.state.weather.map(weather => (<div>
+  {weather.location.name}
   <br/>
+  {weather.location.country}
+  <br/>
+  {weather.current.temp_f} <span>°F</span>
+  <br/>
+  {weather.current.temp_c} <span>°C</span>
+  <br/>
+  <h2>{weather.current.condition.text}</h2>
+  <br/>
+  </div>))}</h2>
+
+</div>
 
 
-  </div>
 
-))}
-  </div>
+    
+
+
 )
 }
 }
