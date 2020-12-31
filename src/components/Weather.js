@@ -31,7 +31,7 @@ getWeather = async (e) => {
   
   const city = document.getElementById('city').value;
 
-  axios.get(`http://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=${city}`).then(
+  axios.get(`https://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=${city}`).then(
    res => {
     this.setState ({weather: [res.data] })
     // console.log(this.state.weather)
