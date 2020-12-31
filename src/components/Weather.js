@@ -73,6 +73,8 @@ onChange={this.handleChange}
   <h2>{this.state.weather.map(weather => (<div>
   {weather.location.name}
   <hr/>
+  {weather.location.region}
+  <hr/>
   {weather.location.country}
   <hr/>
   {weather.current.temp_f} <span>°F</span>
