@@ -18,7 +18,7 @@ export default class Weather extends React.Component {
 
 
 
-handlenum1Change (event) {
+handleChange (event) {
 
   let city = (event.target.value);
   
@@ -31,16 +31,16 @@ getWeather = async (e) => {
   
   const city = document.getElementById('city').value;
 
- axios.get(`http://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=${city}`).then(
+  axios.get(`http://api.weatherapi.com/v1/current.json?key=b61abddeaf714b5bba9210052201012&q=${city}`).then(
    res => {
     this.setState ({weather: [res.data] })
-    console.log(this.state.weather)
+    // console.log(this.state.weather)
    }
  );
   if (city === '') {
    alert("City Missing")
   }
-  
+ 
  
 }
 
@@ -49,15 +49,18 @@ getWeather = async (e) => {
 render (){
 
 return(
+
 <div id='all' >
- 
+<br/>
+<br/>
+
 <form id='form' onSubmit={this.getWeather}>
 
 <input
-type='text' 
+type='search' 
 placeholder='City...'
 id='city'
-onChange={this.handlenum1Change}
+onChange={this.handleChange}
 />
 
 <br/>
@@ -69,15 +72,16 @@ onChange={this.handlenum1Change}
   <br/>
   <h2>{this.state.weather.map(weather => (<div>
   {weather.location.name}
-  <br/>
+  <hr/>
   {weather.location.country}
-  <br/>
+  <hr/>
   {weather.current.temp_f} <span>°F</span>
-  <br/>
+  <hr/>
   {weather.current.temp_c} <span>°C</span>
-  <br/>
+  <hr/>
   <h2>{weather.current.condition.text}</h2>
-  <br/>
+  <img src={weather.current.condition.icon}/>
+
   </div>))}</h2>
   </form>
 
