@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default class Weather extends React.Component {
@@ -35,17 +37,22 @@ getWeather = async (e) => {
     console.log(this.state.weather)
    }
  );
+  if (city === '') {
+   alert("City Missing")
+  }
   
-
  
 }
+
+
 
 render (){
 
 return(
 <div id='all' >
  
-<form onSubmit={this.getWeather}>
+<form id='form' onSubmit={this.getWeather}>
+
 <input
 type='text' 
 placeholder='City...'
@@ -53,10 +60,12 @@ id='city'
 onChange={this.handlenum1Change}
 />
 
+<br/>
+<br/>
 
-<button>Get Weather</button>
+<Button className="btn-primary" variant='primary' type='submit'>Get Weather</Button>
 
-
+  <br/>
   <br/>
   <h2>{this.state.weather.map(weather => (<div>
   {weather.location.name}
@@ -71,6 +80,7 @@ onChange={this.handlenum1Change}
   <br/>
   </div>))}</h2>
   </form>
+
 </div>
 
 
