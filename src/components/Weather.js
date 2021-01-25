@@ -23,8 +23,10 @@ handleChange (event) {
   let city = (event.target.value);
   
   console.log(city)
-  }
+ }
   
+
+ 
 
 getWeather = async (e) => {
   e.preventDefault();
@@ -36,8 +38,9 @@ getWeather = async (e) => {
     this.setState ({weather: [res.data] })
     // console.log(this.state.weather)
    }
- );
-  if (city === '') {
+ ).catch(console.error());
+  
+ if (city === '') {
    alert("City Missing")
   }
  
